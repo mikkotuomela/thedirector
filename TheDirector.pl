@@ -178,7 +178,7 @@ my $deadline = 0;
 my $time = [gettimeofday];
 
 ##########################################################
-eval `$cat demorc`;                        # do everything
+eval `$cat demorc.pl`;                     # do everything
 ##########################################################
 
 # reset the terminal after the demo ends

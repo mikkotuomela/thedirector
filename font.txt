@@ -1,0 +1,417 @@
+:
+
+  OO
+  OO
+
+  OO
+  OO
+
+@
+ OOOOO
+OO   OO
+OO  OOO
+OO O OO
+OO  OOO
+OO   
+ OOOOO
+"
+OO  OO
+OO  OO
+OO  OO
+
+
+
+
+.
+
+
+
+
+
+  OO
+  OO
+'
+   OO
+  OO
+
+
+
+
+
+,
+
+
+
+
+
+  OO
+ OO
+-
+
+
+
+OOOOOOO
+
+
+
++
+
+  OO
+  OO
+OOOOOO
+  OO
+  OO
+
+*
+
+ OO OO
+  OOO
+OOOOOOO
+  OOO
+ OO OO
+
+/
+
+     OO
+    OO
+   OO
+  OO
+ OO
+OO
+_
+
+
+
+
+
+
+OOOOOO
+?
+ OOOOO
+OO   OO
+     OO
+   OOO
+   OO
+
+   OO
+!
+  OO
+  OO
+  OO
+  OO
+  OO
+
+  OO
+0
+ OOOOO
+OO   OO
+OO  OOO
+OO O OO
+OOO  OO
+OO   OO
+ OOOOO
+1
+  OO
+ OOO
+  OO 
+  OO
+  OO
+  OO
+ OOOO 
+2
+ OOOOO
+OO   OO
+     OO
+ OOOOO
+OO
+OO
+OOOOOOO
+3
+ OOOOO
+OO   OO
+     OO
+  OOOO
+     OO
+OO   OO
+ OOOOO
+4
+   OOO
+  OOOO
+ OO OO
+OO  OO
+OOOOOOO
+    OO
+    OO
+5
+OOOOOOO
+OO
+OO
+OOOOOO
+     OO
+OO   OO
+ OOOOO
+6
+  OOOO
+ OO   
+OO
+OOOOOO
+OO   OO
+OO   OO
+ OOOOO
+7
+OOOOOOO
+OO   OO
+     OO
+    OO
+   OO
+   OO
+   OO
+8
+ OOOOO
+OO   OO
+OO   OO
+ OOOOO
+OO   OO
+OO   OO
+ OOOOO
+9
+ OOOOO
+OO   OO
+OO   OO
+ OOOOOO
+     OO
+    OO
+ OOOO
+A
+  OOO
+ OO OO
+OO   OO
+OO   OO
+OOOOOOO
+OO   OO
+OO   OO
+B
+OOOOOO
+OO   OO
+OO   OO
+OOOOOO
+OO   OO
+OO   OO
+OOOOOO
+C
+ OOOOO
+OO   OO
+OO
+OO
+OO
+OO   OO
+ OOOOO
+D
+OOOOO
+OO  OO
+OO   OO
+OO   OO
+OO   OO
+OO  OO
+OOOOO
+E
+OOOOOOO
+OO
+OO
+OOOOO
+OO
+OO
+OOOOOOO
+F
+OOOOOOO
+OO
+OO
+OOOOO
+OO
+OO
+OO
+G
+ OOOOO
+OO   OO
+OO
+OO OOOO
+OO   OO
+OO   OO
+ OOOOOO
+H
+OO   OO
+OO   OO
+OO   OO
+OOOOOOO
+OO   OO
+OO   OO
+OO   OO
+I
+OOOOOO
+  OO
+  OO
+  OO
+  OO
+  OO
+OOOOOO
+J
+     OO
+     OO
+     OO
+     OO
+     OO
+OO   OO
+ OOOOO
+K
+OO   OO
+OO   OO
+OO  OO
+OOOOO
+OO  OO
+OO   OO
+OO   OO
+L
+OO
+OO
+OO
+OO
+OO
+OO
+OOOOOOO
+M
+OO   OO
+OOO OOO
+OOOOOOO
+OO O OO
+OO   OO
+OO   OO
+OO   OO
+N
+OO   OO
+OOO  OO
+OOOO OO
+OOOOOOO
+OO OOOO
+OO  OOO
+OO   OO
+O
+ OOOOO
+OO   OO
+OO   OO
+OO   OO
+OO   OO
+OO   OO
+ OOOOO
+P
+OOOOOO
+OO   OO
+OO   OO
+OOOOOO
+OO
+OO
+OO
+Q
+ OOOOO
+OO   OO
+OO   OO
+OO   OO
+OO OOOO
+OO  OO
+ OOO OO
+R
+OOOOOO
+OO   OO
+OO   OO
+OOOOOO
+OO OO
+OO  OO
+OO   OO
+S
+ OOOOO
+OO   OO
+OO
+ OOOOO
+     OO
+OO   OO
+ OOOOO
+T
+OOOOOO
+  OO
+  OO
+  OO
+  OO
+  OO
+  OO
+U
+OO   OO
+OO   OO
+OO   OO
+OO   OO
+OO   OO
+OO   OO
+ OOOOO
+V
+OO   OO
+OO   OO
+OO   OO
+OO   OO
+OO   OO
+ OO OO
+  OOO
+W
+OO   OO
+OO   OO
+OO   OO
+OO O OO
+OOOOOOO
+OOO OOO
+OO   OO
+X
+OO   OO
+OO   OO
+ OO OO
+  OOO
+ OO OO
+OO   OO
+OO   OO
+Y
+OO  OO
+OO  OO
+OO  OO
+ OOOO
+  OO
+  OO
+  OO
+Z
+OOOOOO
+    OO
+   OO
+  OO
+ OO
+OO
+OOOOOO
+Å
+  OOO
+
+ OOOOO
+OO   OO
+OOOOOOO
+OO   OO
+OO   OO
+Ä
+OO   OO
+  OOO
+ OO OO
+OO   OO
+OOOOOOO
+OO   OO
+OO   OO
+Ö
+OO   OO
+ OOOOO
+OO   OO
+OO   OO
+OO   OO
+OO   OO
+ OOOOO
+END

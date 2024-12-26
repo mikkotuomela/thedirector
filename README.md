@@ -16,4 +16,4 @@ Requires Perl 5 with HiRes.pm and a VT100 compatible terminal
 * font.txt - Font file
 
 ## Usage:
-% ./TheDirector.pl <x> <y> <aspectratio>
+ % ./TheDirector.pl <x> <y> <aspectratio>

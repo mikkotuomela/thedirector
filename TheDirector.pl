@@ -221,28 +221,28 @@ sub part_blobs {
 
     my @bg;
     for my $frame (0 .. 3) {
-	for my $y (0 .. $rows) {
-	    for my $x (0 .. $cols) {
-		$tempchar = substr($text, $x % length($text), 1);
-		if(rand 10 < 5) {
-		    $bg[$frame][$x][$y] = lc($tempchar);
-		} else {
-		    $bg[$frame][$x][$y] = uc($tempchar);
-		}
-	    }
-	}			
+    	for my $y (0 .. $rows) {
+    	    for my $x (0 .. $cols) {
+        		$tempchar = substr($text, $x % length($text), 1);
+        		if(rand 10 < 5) {
+        		    $bg[$frame][$x][$y] = lc($tempchar);
+        		} else {
+        		    $bg[$frame][$x][$y] = uc($tempchar);
+        		}
+    	    }
+    	}			
     }
 
     my @coords;
     for my $blob (0 .. $blobs) {
-	$coords[$blob] = [rand $cols, 
-			  rand $rows, 
-			  5 - rand 10, 
-			  5 - rand 10, 
-			  0, 
-			  0];
-	$coords[$blob][4] = int($coords[$blob][0]);
-	$coords[$blob][5] = int($coords[$blob][1]);
+    	$coords[$blob] = [rand $cols, 
+    			  rand $rows, 
+    			  5 - rand 10, 
+    			  5 - rand 10, 
+    			  0, 
+    			  0];
+    	$coords[$blob][4] = int($coords[$blob][0]);
+    	$coords[$blob][5] = int($coords[$blob][1]);
     }
 
     my $height;
@@ -266,49 +266,49 @@ sub part_blobs {
     $deadline += $duration;
 
     while($now < $deadline) {
-	$picture = "";
-	for my $y (0 .. $rows) {
-	    for my $x (0 .. $cols) {
-		$height = 0;
-		for my $blob (0 .. $blobs) {
-		    $height += $neg * ($blob + 2) * 
-			$dist[abs($x - $coords[$blob][4])]
-			    [abs($y - $coords[$blob][5])];
-		    $neg = -$neg;
-		}
-		if($height < -70 || abs($height) < 20) {
-		    $picture .= " ";
-		} else {
-		    $picture .= $bg[$frame][$x][$y];
-		}
-	    }
-	    $picture .= "\n";
-	}
-	print &terminal_home . $picture;
-	
-	for my $blob (0 .. $blobs) {
-	    $coords[$blob][0] += $coords[$blob][2];
-	    $coords[$blob][1] += $coords[$blob][3];
-	    if($coords[$blob][0] < 0 || $coords[$blob][0] > $cols) {
-		$coords[$blob][2] = -$coords[$blob][2];
-	    }
-	    if($coords[$blob][1] < 0 || $coords[$blob][1] > $rows) {
-		$coords[$blob][3] = -$coords[$blob][3];
-	    }
-	    $coords[$blob][4] = int($coords[$blob][0]);
-	    $coords[$blob][5] = int($coords[$blob][1]);
-	}
-	$t1 = tv_interval($t0);
-	$now = tv_interval($time);
-	$timeperframe = $t1 / $i;
-	$timeleft = $deadline - $now;
-	if($timeperframe > $timeleft) {
-	    last;
-	}
-	$frame++;
-	$frame = $frame % 4;
-
-	$i++;
+    	$picture = "";
+    	for my $y (0 .. $rows) {
+    	    for my $x (0 .. $cols) {
+        		$height = 0;
+        		for my $blob (0 .. $blobs) {
+        		    $height += $neg * ($blob + 2) * 
+        			$dist[abs($x - $coords[$blob][4])]
+        			     [abs($y - $coords[$blob][5])];
+        		    $neg = -$neg;
+        		}
+        		if($height < -70 || abs($height) < 20) {
+        		    $picture .= " ";
+        		} else {
+        		    $picture .= $bg[$frame][$x][$y];
+        		}
+    	    }
+    	    $picture .= "\n";
+    	}
+    	print &terminal_home . $picture;
+    	
+    	for my $blob (0 .. $blobs) {
+    	    $coords[$blob][0] += $coords[$blob][2];
+    	    $coords[$blob][1] += $coords[$blob][3];
+    	    if($coords[$blob][0] < 0 || $coords[$blob][0] > $cols) {
+    		    $coords[$blob][2] = -$coords[$blob][2];
+    	    }
+    	    if($coords[$blob][1] < 0 || $coords[$blob][1] > $rows) {
+    		    $coords[$blob][3] = -$coords[$blob][3];
+    	    }
+    	    $coords[$blob][4] = int($coords[$blob][0]);
+    	    $coords[$blob][5] = int($coords[$blob][1]);
+    	}
+    	$t1 = tv_interval($t0);
+    	$now = tv_interval($time);
+    	$timeperframe = $t1 / $i;
+    	$timeleft = $deadline - $now;
+    	if($timeperframe > $timeleft) {
+    	    last;
+    	}
+    	$frame++;
+    	$frame = $frame % 4;
+    
+    	$i++;
     }
     nap();
 }
@@ -340,26 +340,26 @@ sub part_scrolltext {
     $depth *= $aspectratio;
 
     while($now < $deadline) {
-	$picture = "";
-	$wave = 5 * $xoffset % 360;
-	for my $y (0 .. $rows) {
-	    for my $x (0 .. $cols) {
-		$picture .= substr($lines[$y / $factor], 
-				   ($x + $xoffset + $rotate[$wave][0] * 
-				    $depth) / $factor, 
-				   1);
-	    }
-	    $picture .= "\n";
-	    $wave += $wavespeed;
-	    if($wave > 359) {
-		$wave -= 360;
-	    }
-	}
-	print &terminal_home . $picture;
-
-	$t1 = tv_interval($t0);
-	$now = tv_interval($time);
-	$xoffset = ($t1 / $duration) * $maxoffset;
+    	$picture = "";
+    	$wave = 5 * $xoffset % 360;
+    	for my $y (0 .. $rows) {
+    	    for my $x (0 .. $cols) {
+        		$picture .= substr($lines[$y / $factor], 
+        				    ($x + $xoffset + $rotate[$wave][0] * 
+        				     $depth) / $factor, 
+        				    1);
+    	    }
+    	    $picture .= "\n";
+    	    $wave += $wavespeed;
+    	    if($wave > 359) {
+    		    $wave -= 360;
+    	    }
+    	}
+    	print &terminal_home . $picture;
+    
+    	$t1 = tv_interval($t0);
+    	$now = tv_interval($time);
+    	$xoffset = ($t1 / $duration) * $maxoffset;
     }
     nap();
 }
@@ -376,8 +376,8 @@ sub part_cube {
     $degree = $degree_start = 0;
     $rotation_speed = 0;
     for my $frame (0 .. $duration) {
-	refresh();
-	move();
+    	refresh();
+    	move();
     }
 }
 
@@ -421,10 +421,10 @@ sub part_tunnel {
     my $t1 = 0;
     $deadline += $duration;
     while ($now < $deadline) {
-	refresh();
-	$t1 = tv_interval($t0);
-	$now = tv_interval($time);
-	move($t1);
+    	refresh();
+    	$t1 = tv_interval($t0);
+    	$now = tv_interval($time);
+    	move($t1);
     }
     nap();
 }
@@ -445,10 +445,10 @@ sub part_tunnel2 {
     my $t1 = 0;
     $deadline += $duration;
     while ($now < $deadline) {
-	refresh();
-	$t1 = tv_interval($t0);
-	$now = tv_interval($time);
-	move($t1);
+    	refresh();
+    	$t1 = tv_interval($t0);
+    	$now = tv_interval($time);
+    	move($t1);
     }
     nap();
 }
@@ -469,10 +469,10 @@ sub part_dottunnel {
     my $t1 = 0;
     $deadline += $duration;
     while ($now < $deadline) {
-	refresh();
-	$t1 = tv_interval($t0);
-	$now = tv_interval($time);
-	move($t1);
+    	refresh();
+    	$t1 = tv_interval($t0);
+    	$now = tv_interval($time);
+    	move($t1);
     }
     nap();
 }
@@ -493,10 +493,10 @@ sub part_floors {
     my $t1 = 0;
     $deadline += $duration;
     while ($now < $deadline) {
-	refresh();
-	$t1 = tv_interval($t0);
-	$now = tv_interval($time);
-	move($t1);
+    	refresh();
+    	$t1 = tv_interval($t0);
+    	$now = tv_interval($time);
+    	move($t1);
     }
     nap();
 #    $degree = 90 * cos($frame / 100);
@@ -518,10 +518,10 @@ sub part_floors2 {
     my $t1 = 0;
     $deadline += $duration;
     while ($now < $deadline) {
-	refresh();
-	$t1 = tv_interval($t0);
-	$now = tv_interval($time);
-	move($t1);
+    	refresh();
+    	$t1 = tv_interval($t0);
+    	$now = tv_interval($time);
+    	move($t1);
     }
     nap();
 }
@@ -542,10 +542,10 @@ sub part_stars {
     my $t1 = 0;
     $deadline += $duration;
     while ($now < $deadline) {
-	refresh();
-	$t1 = tv_interval($t0);
-	$now = tv_interval($time);
-	move($t1);
+    	refresh();
+    	$t1 = tv_interval($t0);
+    	$now = tv_interval($time);
+    	move($t1);
     }
     nap();
 }
@@ -557,25 +557,25 @@ sub initialize_cube {
     my $side = int($amount ** (1/3));
     my $i = 0;
     for my $z (0 .. $side - 1) {
-	for my $y (0 .. $side - 1) {
-	    for my $x (0 .. $side - 1) {
-		$star[$i][0] = -20 + $x * (40 / ($side - 1));
-		$star[$i][1] = -20 + $y * (40 / ($side - 1));
-		$star[$i][2] =  20 + $z * (40 / ($side - 1));
-		$speed[$i][0] = 0;
-		$speed[$i][0] = 0;
-		$speed[$i][0] = 0;
-		$i++;
-	    }
-	}
+    	for my $y (0 .. $side - 1) {
+    	    for my $x (0 .. $side - 1) {
+    		$star[$i][0] = -20 + $x * (40 / ($side - 1));
+    		$star[$i][1] = -20 + $y * (40 / ($side - 1));
+    		$star[$i][2] =  20 + $z * (40 / ($side - 1));
+    		$speed[$i][0] = 0;
+    		$speed[$i][0] = 0;
+    		$speed[$i][0] = 0;
+    		$i++;
+    	    }
+    	}
     }
     for my $j ($i .. $amount) {
-	$star[$j][0] = 999999;
-	$star[$j][1] = 999999;
-	$star[$j][2] = 999999;
-	$speed[$j][0] = 0;
-	$speed[$j][0] = 0;
-	$speed[$j][0] = 0;
+    	$star[$j][0] = 999999;
+    	$star[$j][1] = 999999;
+    	$star[$j][2] = 999999;
+    	$speed[$j][0] = 0;
+    	$speed[$j][0] = 0;
+    	$speed[$j][0] = 0;
     }
 }
 # 2001-style "floors"
@@ -584,9 +584,9 @@ sub initialize_floors {
         $star[$i][0] = $base[$i][0] = int(rand (4 * $cols) - 2 * $cols);
         $star[$i][1] = $base[$i][1] = (-1) ** int(rand 2) * 30;
         $star[$i][2] = $base[$i][2] = 1 + int(rand $depth - 1);
-	$speed[$i][0] = 0;
-	$speed[$i][1] = 0;
-	$speed[$i][2] = -2;
+    	$speed[$i][0] = 0;
+    	$speed[$i][1] = 0;
+    	$speed[$i][2] = -2;
     }
 }
 # star tunnel
@@ -594,13 +594,13 @@ sub initialize_tunnel {
     my $d;
     my $radius = $rows;
     for my $i (0 .. $amount) {
-	$d = rand 360;
-	$star[$i][0] = $base[$i][0] = int($radius * $rotate[$d][0]); 
-	$star[$i][1] = $base[$i][1] = int($radius * $rotate[$d][1]);
-	$star[$i][2] = $base[$i][2] = int(1 + rand $depth);
-	$speed[$i][0] = 0;
-	$speed[$i][1] = 0;
-	$speed[$i][2] = 2;
+    	$d = rand 360;
+    	$star[$i][0] = $base[$i][0] = int($radius * $rotate[$d][0]); 
+    	$star[$i][1] = $base[$i][1] = int($radius * $rotate[$d][1]);
+    	$star[$i][2] = $base[$i][2] = int(1 + rand $depth);
+    	$speed[$i][0] = 0;
+    	$speed[$i][1] = 0;
+    	$speed[$i][2] = 2;
     }
 }
 # star tunnel2
@@ -608,13 +608,13 @@ sub initialize_tunnel2 {
     my $d;
     my $radius = $rows;
     for my $i (0 .. $amount) {
-	$d = int(rand 360);
-	$star[$i][0] = $base[$i][0] = int($radius * $rotate[$d][0]); 
-	$star[$i][1] = $base[$i][1] = int($radius * $rotate[$d][1]);
-	$star[$i][2] = $base[$i][2] = int(1 + rand $depth);
-	$speed[$i][0] = 0;
-	$speed[$i][1] = 0;
-	$speed[$i][2] = -5;
+    	$d = int(rand 360);
+    	$star[$i][0] = $base[$i][0] = int($radius * $rotate[$d][0]); 
+    	$star[$i][1] = $base[$i][1] = int($radius * $rotate[$d][1]);
+    	$star[$i][2] = $base[$i][2] = int(1 + rand $depth);
+    	$speed[$i][0] = 0;
+    	$speed[$i][1] = 0;
+    	$speed[$i][2] = -5;
     }
 }
 # dot tunnel
@@ -624,28 +624,28 @@ sub initialize_dottunnel {
     my $i;
     my $dotcount = 0;
     for my $circle (0 .. 14) {
-	for my $dot (0 .. $circleamount - 1) {
-	    $i = $circle * $circleamount + $dot;
-	    $star[$i][0] = $base[$i][0] = 
-		$cols * sin(2 * $pi * $circle * 10 / 150) + 
-		    int($radius * $rotate[$dot * 360 / $circleamount][0]);
-	    $star[$i][1] = $base[$i][1] = 
-		.5 * $rows * cos(2 * $pi * $circle * 10 / 75) +
-		int($radius * $rotate[$dot * 360 / $circleamount][1]);
-	    $star[$i][2] = $base[$i][2] = $circle * 10 + 5;
-	    $speed[$i][0] = 0;
-	    $speed[$i][1] = 0;
-	    $speed[$i][2] = -3;
-	    $dotcount++;
-	}
+    	for my $dot (0 .. $circleamount - 1) {
+    	    $i = $circle * $circleamount + $dot;
+    	    $star[$i][0] = $base[$i][0] = 
+    		    $cols * sin(2 * $pi * $circle * 10 / 150) + 
+    		    int($radius * $rotate[$dot * 360 / $circleamount][0]);
+    	    $star[$i][1] = $base[$i][1] = 
+    		    .5 * $rows * cos(2 * $pi * $circle * 10 / 75) +
+    		    int($radius * $rotate[$dot * 360 / $circleamount][1]);
+    	    $star[$i][2] = $base[$i][2] = $circle * 10 + 5;
+    	    $speed[$i][0] = 0;
+    	    $speed[$i][1] = 0;
+    	    $speed[$i][2] = -3;
+    	    $dotcount++;
+    	}
     }
     for my $i ($dotcount .. $amount) {
-	$star[$i][0] = 0;
-	$star[$i][1] = 0;
-	$star[$i][2] = 0;
-	$speed[$i][0] = 0;
-	$speed[$i][0] = 0;
-	$speed[$i][0] = 0;
+    	$star[$i][0] = 0;
+    	$star[$i][1] = 0;
+    	$star[$i][2] = 0;
+    	$speed[$i][0] = 0;
+    	$speed[$i][0] = 0;
+    	$speed[$i][0] = 0;
     }
 }
 # explosion
@@ -654,30 +654,30 @@ sub initialize_explosion {
     my $e;
     my $f;
     for my $i (0 .. $amount) {
-	$star[$i][0] = $base[$i][0] = int(15 - rand 30);
-	$star[$i][1] = $base[$i][1] = int(15 - rand 30);
-	$star[$i][2] = $base[$i][2] = int(15 - rand 30) + int($depth / 2) - 10;
-	$speed[$i][0] = (-1) ** int(rand 2) * (4 + rand 2);
-	$speed[$i][1] = (-1) ** int(rand 2) * (4 + rand 2);
-	$speed[$i][2] = (-1) ** int(rand 2) * (4 + rand 2);
-	if(sqrt($speed[$i][0] ** 2 + 
-		$speed[$i][1] ** 2 + 
-		$speed[$i][2] ** 2) > 6) {
-	    $speed[$i][0] *= .5 * rand 1;
-	    $speed[$i][1] *= .5 * rand 1;
-	    $speed[$i][2] *= .5 * rand 1;
-	}
+    	$star[$i][0] = $base[$i][0] = int(15 - rand 30);
+    	$star[$i][1] = $base[$i][1] = int(15 - rand 30);
+    	$star[$i][2] = $base[$i][2] = int(15 - rand 30) + int($depth / 2) - 10;
+    	$speed[$i][0] = (-1) ** int(rand 2) * (4 + rand 2);
+    	$speed[$i][1] = (-1) ** int(rand 2) * (4 + rand 2);
+    	$speed[$i][2] = (-1) ** int(rand 2) * (4 + rand 2);
+    	if(sqrt($speed[$i][0] ** 2 + 
+    		$speed[$i][1] ** 2 + 
+    		$speed[$i][2] ** 2) > 6) {
+    	    $speed[$i][0] *= .5 * rand 1;
+    	    $speed[$i][1] *= .5 * rand 1;
+    	    $speed[$i][2] *= .5 * rand 1;
+    	}
     }
 }
 # 3d stars
 sub initialize_stars {
     for my $i (0 .. $amount) {
-	$star[$i][0] = $base[$i][0] = int(rand (4 * $cols) - 2 * $cols);
-	$star[$i][1] = $base[$i][1] = int(rand (4 * $cols) - 2 * $cols);
-	$star[$i][2] = $base[$i][2] = 1 + int(rand $depth - 1);
-	$speed[$i][0] = 0;
-	$speed[$i][1] = 0;
-	$speed[$i][2] = -3;
+    	$star[$i][0] = $base[$i][0] = int(rand (4 * $cols) - 2 * $cols);
+    	$star[$i][1] = $base[$i][1] = int(rand (4 * $cols) - 2 * $cols);
+    	$star[$i][2] = $base[$i][2] = 1 + int(rand $depth - 1);
+    	$speed[$i][0] = 0;
+    	$speed[$i][1] = 0;
+    	$speed[$i][2] = -3;
     }
 }
 
@@ -689,86 +689,86 @@ sub refresh {
     my $white = 0;
     my @blank = ("O", " ");
     if(rand $flash < 1) {
-	$white = 0;
+	    $white = 0;
     } else {
-	$white = 1;
+	    $white = 1;
     }
 
     if($motionblur == 0) {
-	# normal
-	if($white == 0) {
-	    @screen = @fullscreen;
-	} else {
-	    @screen = @emptyscreen;
-	}
-	for my $i (0 .. $amount) {
-	    $sdepth = $star[$i][2];             # speed up things
-	    if($degree == 0) {
-		$x = $rcols + $aspectratio * $zoom[$sdepth * 10] 
-		    * $star[$i][0];             # screen x
-		$y = $rrows + $zoom[$sdepth * 10]
-		    * $star[$i][1];             # screen y
-	    } else {
-		$x = $rcols + $aspectratio * $zoom[$sdepth * 10] * 
-		    ($star[$i][0] * $rotate[$degree][1] -
-		     $star[$i][1] * $rotate[$degree][0]);    # screen x
-		$y = $rrows + $zoom[$sdepth * 10] * 
-		    ($star[$i][0] * $rotate[$degree][0 * 10] +
-		     $star[$i][1] * $rotate[$degree][1]);    # screen y
-	    }
-	    if(0 < $x && $x < $cols && 0 < $y && $y < $rows){# fits on screen?
-		substr($screen[$y], $x, 1) = 
-		    $stars[($depth - $sdepth) / $dest];
-	    }
-	}
-	for my $i (0 .. $rows) {
-	    $picture .= $screen[$i] . "\n";
-	}
+    	# normal
+    	if($white == 0) {
+    	    @screen = @fullscreen;
+    	} else {
+    	    @screen = @emptyscreen;
+    	}
+    	for my $i (0 .. $amount) {
+    	    $sdepth = $star[$i][2];             # speed up things
+    	    if($degree == 0) {
+        		$x = $rcols + $aspectratio * $zoom[$sdepth * 10] 
+        		    * $star[$i][0];             # screen x
+        		$y = $rrows + $zoom[$sdepth * 10]
+        		    * $star[$i][1];             # screen y
+    	    } else {
+        		$x = $rcols + $aspectratio * $zoom[$sdepth * 10] * 
+        		    ($star[$i][0] * $rotate[$degree][1] -
+        		     $star[$i][1] * $rotate[$degree][0]);    # screen x
+        		$y = $rrows + $zoom[$sdepth * 10] * 
+        		    ($star[$i][0] * $rotate[$degree][0 * 10] +
+        		     $star[$i][1] * $rotate[$degree][1]);    # screen y
+    	    }
+    	    if(0 < $x && $x < $cols && 0 < $y && $y < $rows){# fits on screen?
+        		substr($screen[$y], $x, 1) = 
+        		    $stars[($depth - $sdepth) / $dest];
+    	    }
+    	}
+    	for my $i (0 .. $rows) {
+    	    $picture .= $screen[$i] . "\n";
+    	}
     } elsif($motionblur > 0) {
-	# motion blur
-
-	# calculate pixels
-	for my $i (0 .. $amount) {
-	    $sdepth = $star[$i][2];
-	    if($degree == 0) {
-		$x = $rcols + $aspectratio * $zoom[$sdepth * 10] 
-		    * $star[$i][0];                          # screen x
-		$y = $rrows + $zoom[$sdepth * 10] 
-		    * $star[$i][1];                          # screen y
-	    } else {
-		$x = $rcols + $aspectratio * $zoom[$sdepth * 10] * 
-		    ($star[$i][0] * $rotate[$degree][1] -
-		     $star[$i][1] * $rotate[$degree][0]);    # screen x
-		$y = $rrows + $zoom[$sdepth * 10] * 
-		    ($star[$i][0] * $rotate[$degree][0] +
-		     $star[$i][1] * $rotate[$degree][1]);    # screen y
-	    }
-	    if(0 < $x && $x < $cols && 0 < $y && $y < $rows) {
-		$pixel = $screenarray[$x][$y];
-		$pixel += 255 - $eightbitdepth * ($sdepth - 1);
-		if($pixel > 255) {
-		    $pixel = 255;
-		}
-		$screenarray[$x][$y] = $pixel;
-	    }
-	}
-	# compile a picture from the data
-	for my $y (0 .. $rows) {
-	    for my $x (0 .. $cols) {
-		$pixel = $screenarray[$x][$y];
-		if($pixel > 1) {
-		    $picture .= $stars[$pixel / 25.6];
-		    $pixel -= $motionblur;
-		} else {
-		    $picture .= $blank[$white];
-		}
-		if($pixel < 0) {
-		    $pixel = 0; 
-		}
-		$screenarray[$x][$y] = $pixel;
-	    }
-	    $picture .= "\n";
-	}
+    	# motion blur
+    
+    	# calculate pixels
+    	for my $i (0 .. $amount) {
+    	    $sdepth = $star[$i][2];
+    	    if($degree == 0) {
+        		$x = $rcols + $aspectratio * $zoom[$sdepth * 10] 
+        		     * $star[$i][0];                          # screen x
+        		$y = $rrows + $zoom[$sdepth * 10] 
+        		     * $star[$i][1];                          # screen y
+    	    } else {
+        		$x = $rcols + $aspectratio * $zoom[$sdepth * 10] * 
+        		     ($star[$i][0] * $rotate[$degree][1] -
+        		      $star[$i][1] * $rotate[$degree][0]);    # screen x
+        		$y = $rrows + $zoom[$sdepth * 10] * 
+        		     ($star[$i][0] * $rotate[$degree][0] +
+        		      $star[$i][1] * $rotate[$degree][1]);    # screen y
+    	    }
+    	    if(0 < $x && $x < $cols && 0 < $y && $y < $rows) {
+        		$pixel = $screenarray[$x][$y];
+        		$pixel += 255 - $eightbitdepth * ($sdepth - 1);
+        		if($pixel > 255) {
+        		    $pixel = 255;
+        		}
+        		$screenarray[$x][$y] = $pixel;
+    	    }
+    	}
+    	# compile a picture from the data
+    	for my $y (0 .. $rows) {
+    	    for my $x (0 .. $cols) {
+        		$pixel = $screenarray[$x][$y];
+        		if($pixel > 1) {
+        		    $picture .= $stars[$pixel / 25.6];
+        		    $pixel -= $motionblur;
+        		} else {
+        		    $picture .= $blank[$white];
+        		}
+        		if($pixel < 0) {
+        		    $pixel = 0; 
+        		}
+        		$screenarray[$x][$y] = $pixel;
+    	    }
+    	    $picture .= "\n";
+    	}
     }
     print &terminal_home . $picture;
 }
@@ -780,17 +780,17 @@ sub move {
     my $instance;
     my $mbslow = 1 / (1 + 2 * ($motionblur > 0)); 
     for my $i (0 .. $amount) {
-	for my $n (0 .. 2) {
-	    $instance = $base[$i][$n] + $mbslow * 50 * $t1 * $speed[$i][$n];
-	    if($bordercheck == 1) {
-		$instance = $min[$n] + (($instance - $min[$n]) 
-					% $room[$n]);
-	    } elsif($instance < $min[$n] or $instance > $max[$n]) {
-		$instance = 1;
-		$speed[$i][$n] = 0;
-	    }
-	    $star[$i][$n] = $instance;
-	}
+    	for my $n (0 .. 2) {
+    	    $instance = $base[$i][$n] + $mbslow * 50 * $t1 * $speed[$i][$n];
+    	    if($bordercheck == 1) {
+        		$instance = $min[$n] + (($instance - $min[$n]) 
+        					% $room[$n]);
+    	    } elsif($instance < $min[$n] or $instance > $max[$n]) {
+        		$instance = 1;
+        		$speed[$i][$n] = 0;
+    	    }
+    	    $star[$i][$n] = $instance;
+    	}
     }
     $degree = $degree_start + $t1 * $rotation_speed;
     $degree = $degree % 360;
@@ -802,9 +802,9 @@ sub make_text {
     my ($text) = @_;
     my @result;
     for my $line (0 .. 6) {
-	for my $i (0 .. length($text) - 1) {
-	    $result[$line] .= $font{substr($text, $i, 1)}[$line];
-	}
+    	for my $i (0 .. length($text) - 1) {
+    	    $result[$line] .= $font{substr($text, $i, 1)}[$line];
+    	}
     }
     @result;
 }
@@ -834,11 +834,11 @@ sub zoom_text {
     print &terminal_reset;
 
     if($speed < 0) {
-	$start = $depth - 1;
-	$end = 1;
+    	$start = $depth - 1;
+    	$end = 1;
     } else {
-	$start = 1;
-	$end = $depth;
+    	$start = 1;
+    	$end = $depth;
     }
     $z = $start;
 
@@ -849,33 +849,33 @@ sub zoom_text {
     $deadline += $duration;
 
     while($now < $deadline && $z > 0 && $z < $depth ) {
-	$width = 4 * $zoom[$z * 10] * length($lines[0]);
-	$height = 4 * $zoom[$z * 10] * 7;
-	$xmin = $rcols - $width / 2;
-	$ymin = $rrows - $height / 2;
-	$xmax = $rcols + $width / 2;
-	$ymax = $rrows + $height / 2;
-	
-	$picture = "";
-
-	for my $y (0 .. $rows) {
-	    for my $x (0 .. $cols) {
-		if($x > $xmin && $x < $xmax && 
-		   $y > $ymin && $y < $ymax) {
-		    $picture .= substr(@lines
-				       [($y - $ymin) / $zoom[$z * 10] / 4], 
-				       ($x - $xmin) / $zoom[$z * 10] / 4, 1);
-		} else {
-		    $picture .= " ";
-		}
-	    }
-	    $picture .= "\n";
-	}
-	print &terminal_home . $picture;
-
-	$t1 = tv_interval($t0);
-	$now = tv_interval($time);
-	$z = $start + $t1 * ($end - $start) / $duration;
+    	$width = 4 * $zoom[$z * 10] * length($lines[0]);
+    	$height = 4 * $zoom[$z * 10] * 7;
+    	$xmin = $rcols - $width / 2;
+    	$ymin = $rrows - $height / 2;
+    	$xmax = $rcols + $width / 2;
+    	$ymax = $rrows + $height / 2;
+    	
+    	$picture = "";
+    
+    	for my $y (0 .. $rows) {
+    	    for my $x (0 .. $cols) {
+        		if($x > $xmin && $x < $xmax && 
+        		   $y > $ymin && $y < $ymax) {
+        		    $picture .= substr(@lines
+        				       [($y - $ymin) / $zoom[$z * 10] / 4], 
+        				       ($x - $xmin) / $zoom[$z * 10] / 4, 1);
+        		} else {
+        		    $picture .= " ";
+        		}
+    	    }
+    	    $picture .= "\n";
+    	}
+    	print &terminal_home . $picture;
+    
+    	$t1 = tv_interval($t0);
+    	$now = tv_interval($time);
+    	$z = $start + $t1 * ($end - $start) / $duration;
     }
     nap();
 }
@@ -924,107 +924,107 @@ sub zoom_pixmap {
     $deadline += $duration;
 
     while($now < $deadline) {
-	if($motionblur == 0) {	
-	    if($t1 < 5) {
-		$z = $t1 * 60;
-	    } else {
-		$degree = (15 * $t1 - 75) % 360;
-		$z = 170 + 130 * $rotate[(18 * $t1 - 93.75) % 360][1];
-	    }
-	} else {
-	    $degree += $timeperframe * 4 * 
-		$rotate[(10 * $t1) % 360][0];
-	    $z = 170 - 130 * $rotate[(18 * $t1) % 360][1];
-	}
-	$side = $piczoom * $zoom[$z * 10] * $size;
-
-	$picture = "";
-
-	if($motionblur == 0) {
-	    $movex = 50 * $rotate[(20 * $t1 - 100) % 360][0];
-	    $movey = 50 * $rotate[(18 * $t1 -  90) % 360][0];
-	} else {
-	    $movex = 50 * $rotate[(10 * $t1) % 360][0];
-	    $movey = 50 * $rotate[(9 * $t1) % 360][0];
-	}
-
-	for my $y (0 .. $rows) {
-	    for my $x (0 .. $cols) {
-		if($t1 < 5 && $motionblur == 0) {
-		    $tempx = $x * $picxzoom - $rcols;
-		    $tempy = $y * $picyzoom - $rrows * $aspectratio;
-		} else {
-		    $tempx = $x * $picxzoom - $rcols + $movex;
-		    $tempy = $y * $picyzoom - $rrows * $aspectratio + $movey;
-		}
-		if($motionblur == 0) {
-		    # no motion blur
-		    if($degree == 0) {
-			$picture .= 
-			    $shades[$picturearray
-				    [modulus($tempx, $side) / $zoom[$z * 10] 
-				     / $piczoom]
-				    [modulus($tempy, $side) / $zoom[$z * 10] 
-				     / $piczoom] 
-				    / 64];
-		    } else {
-			$picture .= 
-			    $shades[$picturearray
-				    [modulus(($rotate[$degree][1] * $tempx -
-					      $rotate[$degree][0] * $tempy), 
-					     $side) / 
-				     $zoom[$z * 10] / $piczoom]
-				    [modulus(($rotate[$degree][0] * $tempx +
-					      $rotate[$degree][1] * $tempy),
-					     $side) /
-				     $zoom[$z * 10] / $piczoom]
-				    / 64];
-		    }
-		} else {
-		    # with motion blur
-		    $pixel = $screenarray[$x][$y];
-		    $pixel -= $motionblur;
-#		    $pixel *= .68; # alternative motion blur
-		    if($pixel < 0) {
-			$pixel = 0;
-		    }
-		    if($degree == 0) {
-			$pixel += .28 *
-			    $picturearray
-				[modulus($tempx, $side) / $zoom[$z * 10] 
-				 / $piczoom]
-				[modulus($tempy, $side) / $zoom[$z * 10] 
-				 / $piczoom];
-		    } else {
-			$pixel += .28 *
-			    $picturearray
-				[modulus(($rotate[$degree][1] * $tempx -
-					  $rotate[$degree][0] * $tempy), 
-					 $side) /
-				 $zoom[$z * 10] / $piczoom]
-				[modulus(($rotate[$degree][0] * $tempx +
-					  $rotate[$degree][1] * $tempy), 
-					 $side) / 
-				 $zoom[$z * 10] / $piczoom];
-		    }
-		    if($pixel > 255) {
-			$pixel = 255;
-		    }
-		    $picture .= $shades[$pixel / 64];
-		    $screenarray[$x][$y] = $pixel;
-		}
-	    }
-	    $picture .= "\n";
-	}
-	print &terminal_home . $picture;
-
-	$t1 = tv_interval($t0);
-	$now = tv_interval($time);
-        $timeperframe = $t1 / $i;
-	if($now + $timeperframe > $deadline) {
-	    last;
-	}
-	$i++;
+    	if($motionblur == 0) {	
+    	    if($t1 < 5) {
+    		    $z = $t1 * 60;
+    	    } else {
+        		$degree = (15 * $t1 - 75) % 360;
+        		$z = 170 + 130 * $rotate[(18 * $t1 - 93.75) % 360][1];
+    	    }
+    	} else {
+    	    $degree += $timeperframe * 4 * 
+    		$rotate[(10 * $t1) % 360][0];
+    	    $z = 170 - 130 * $rotate[(18 * $t1) % 360][1];
+    	}
+    	$side = $piczoom * $zoom[$z * 10] * $size;
+    
+    	$picture = "";
+    
+    	if($motionblur == 0) {
+    	    $movex = 50 * $rotate[(20 * $t1 - 100) % 360][0];
+    	    $movey = 50 * $rotate[(18 * $t1 -  90) % 360][0];
+    	} else {
+    	    $movex = 50 * $rotate[(10 * $t1) % 360][0];
+    	    $movey = 50 * $rotate[(9 * $t1) % 360][0];
+    	}
+    
+    	for my $y (0 .. $rows) {
+    	    for my $x (0 .. $cols) {
+        		if($t1 < 5 && $motionblur == 0) {
+        		    $tempx = $x * $picxzoom - $rcols;
+        		    $tempy = $y * $picyzoom - $rrows * $aspectratio;
+        		} else {
+        		    $tempx = $x * $picxzoom - $rcols + $movex;
+        		    $tempy = $y * $picyzoom - $rrows * $aspectratio + $movey;
+        		}
+        		if($motionblur == 0) {
+        		    # no motion blur
+        		    if($degree == 0) {
+            			$picture .= 
+            			    $shades[$picturearray
+            				    [modulus($tempx, $side) / $zoom[$z * 10] 
+            				     / $piczoom]
+            				    [modulus($tempy, $side) / $zoom[$z * 10] 
+            				     / $piczoom] 
+            				    / 64];
+        		    } else {
+            			$picture .= 
+            			    $shades[$picturearray
+            				    [modulus(($rotate[$degree][1] * $tempx -
+            					      $rotate[$degree][0] * $tempy), 
+            					     $side) / 
+            				     $zoom[$z * 10] / $piczoom]
+            				    [modulus(($rotate[$degree][0] * $tempx +
+            					      $rotate[$degree][1] * $tempy),
+            					     $side) /
+            				     $zoom[$z * 10] / $piczoom]
+            				    / 64];
+        		    }
+        		} else {
+        		    # with motion blur
+        		    $pixel = $screenarray[$x][$y];
+        		    $pixel -= $motionblur;
+        #		    $pixel *= .68; # alternative motion blur
+        		    if($pixel < 0) {
+        			    $pixel = 0;
+        		    }
+        		    if($degree == 0) {
+            			$pixel += .28 *
+            			    $picturearray
+            				[modulus($tempx, $side) / $zoom[$z * 10] 
+            				 / $piczoom]
+            				[modulus($tempy, $side) / $zoom[$z * 10] 
+            				 / $piczoom];
+        		    } else {
+            			$pixel += .28 *
+            			    $picturearray
+            				[modulus(($rotate[$degree][1] * $tempx -
+            					  $rotate[$degree][0] * $tempy), 
+            					 $side) /
+            				 $zoom[$z * 10] / $piczoom]
+            				[modulus(($rotate[$degree][0] * $tempx +
+            					  $rotate[$degree][1] * $tempy), 
+            					 $side) / 
+            				 $zoom[$z * 10] / $piczoom];
+        		    }
+        		    if($pixel > 255) {
+        			    $pixel = 255;
+        		    }
+        		    $picture .= $shades[$pixel / 64];
+        		    $screenarray[$x][$y] = $pixel;
+        		}
+    	    }
+    	    $picture .= "\n";
+    	}
+    	print &terminal_home . $picture;
+    
+    	$t1 = tv_interval($t0);
+    	$now = tv_interval($time);
+            $timeperframe = $t1 / $i;
+    	if($now + $timeperframe > $deadline) {
+    	    last;
+    	}
+    	$i++;
     }
     nap();
 }
@@ -1046,19 +1046,19 @@ sub read_file {
 
     open(FILE, $filename) or die "$!";
     while($line = <FILE>) {
-	chomp($line);
-	$lines[$n] = $line;
-	if(length($line) > $maxlength) {
-	    $maxlength = length($line);
-	}
-	$n++;
+    	chomp($line);
+    	$lines[$n] = $line;
+    	if(length($line) > $maxlength) {
+    	    $maxlength = length($line);
+    	}
+    	$n++;
     }
     close FILE;
-
+    
     $n--;
-
+    
     for my $i (0 .. $n) {
-	$lines[$i] .= " " x ($maxlength - length($lines[$i]));
+    	$lines[$i] .= " " x ($maxlength - length($lines[$i]));
     }
     @lines;
 }
@@ -1081,12 +1081,12 @@ sub read_pgm {
     my $offset = $xmax / 2;
 
     for my $y (0 .. $ymax - 1) {
-	for my $x (0 .. $xmax - 1) {
-	    $picturearray
-		[($x + $offset) % $xmax]
-		[($y + $offset) % $ymax] 
-		    = ord(substr($file, $y * $xmax + $x, 1));
-	}
+    	for my $x (0 .. $xmax - 1) {
+    	    $picturearray
+    		[($x + $offset) % $xmax]
+    		[($y + $offset) % $ymax] 
+    		    = ord(substr($file, $y * $xmax + $x, 1));
+    	}
     }
     
     @picturearray;
